@@ -6,8 +6,15 @@ def get_columns(rows):
         for i in range(0, 8):
             columns[i].append(row[i])
 
+def get_squares(rows):
+    for i in range(0, 8):
+        for j in range(0, 3):
+            for k in range(0, 3):
+                squares[i].append(rows[j][k])
+
 rows = [[], [], [], [], [], [], [], [], []]
 columns = [[], [], [], [], [], [], [], [], []]
+squares = [[], [], [], [], [], [], [], [], []]
 rows[0] = [0, 0, 0, 2, 6, 0, 7, 0, 1]
 rows[1] = [6, 8, 0, 0, 7, 0, 0, 9, 0]
 rows[2] = [1, 9, 0, 0, 0, 4, 5, 0, 0]
