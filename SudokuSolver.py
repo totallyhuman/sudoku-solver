@@ -13,21 +13,21 @@ class Sudoku(object):
         self.values = values
 
     def get_sudoku(self):
-        self.get_rows(self.values)
-        self.get_columns(self.rows)
-        self.get_squares(self.rows)
+        self.get_rows()
+        self.get_columns()
+        self.get_squares()
 
-    def get_rows(self, values):
+    def get_rows(self):
         for i in range(0, 8):
-            for j in values[i * 9:i * 9 + 9]:
+            for j in self.values[i * 9:i * 9 + 9]:
                 self.rows[i].append(j)
 
-    def get_columns(self, rows):
+    def get_columns(self):
         for row in self.rows:
             for i in range(0, 8):
                 self.columns[i].append(row[i])
 
-    def get_squares(self, rows):
+    def get_squares(self):
         for i in range(0, 8):
             for j in range(0, 3):
                 for k in range(0, 3):
