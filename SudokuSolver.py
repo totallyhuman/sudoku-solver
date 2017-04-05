@@ -4,12 +4,16 @@
 import better_exceptions
 
 class Sudoku(object):
+    values = []
     rows = [[], [], [], [], [], [], [], [], []]
     columns = [[], [], [], [], [], [], [], [], []]
     squares = [[], [], [], [], [], [], [], [], []]
 
     def __init__(self, values):
-        self.get_rows(values)
+        self.values = values
+
+    def get_sudoku(self):
+        self.get_rows(self.values)
         self.get_columns(self.rows)
         self.get_squares(self.rows)
 
@@ -53,3 +57,4 @@ Answer to example sudoku:
 """
 
 sudoku = Sudoku(values)
+sudoku.get_sudoku()
