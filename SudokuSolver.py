@@ -58,6 +58,7 @@ class Sudoku(object):
                     self.squares[i].append(self.rows[j][k])
 
     def parse_grid(self):
+        """Parses the values into the grid dict."""
         j = 0
         for l in 'ABCDEFGHI':
             for i in range(1, 10):
@@ -90,5 +91,3 @@ values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
 
 # Creates a new instance of the Sudoku class passing the values array
 sudoku = Sudoku(values)
-sudoku.parse_grid()
-print(sudoku.grid)
