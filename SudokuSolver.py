@@ -58,9 +58,11 @@ class Sudoku(object):
                     self.squares[i].append(self.rows[j][k])
 
     def parse_grid(self):
+        j = 0
         for l in 'ABCDEFGHI':
             for i in range(1, 10):
-                self.grid[l + str(i)] = ''
+                self.grid[l + str(i)] = values[j]
+                j += 1
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
