@@ -1,25 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-def get_rows(values):
-    for i in range(0, 8):
-        for j in values[i * 9:i * 9 + 9]:
-            rows[i].append(j)
+import better_exceptions
 
-def get_columns(rows):
-    for row in rows:
+class Sudoku(object):
+    rows = [[], [], [], [], [], [], [], [], []]
+    columns = [[], [], [], [], [], [], [], [], []]
+    squares = [[], [], [], [], [], [], [], [], []]
+
+    def __init__(self, values):
+        self.get_rows(values)
+        self.get_columns(self.rows)
+        self.get_squares(self.rows)
+
+    def get_rows(self, values):
         for i in range(0, 8):
-            columns[i].append(row[i])
+            for j in values[i * 9:i * 9 + 9]:
+                self.rows[i].append(j)
 
-def get_squares(rows):
-    for i in range(0, 8):
-        for j in range(0, 3):
-            for k in range(0, 3):
-                squares[i].append(rows[j][k])
+    def get_columns(self, rows):
+        for row in self.rows:
+            for i in range(0, 8):
+                self.columns[i].append(row[i])
 
-rows = [[], [], [], [], [], [], [], [], []]
-columns = [[], [], [], [], [], [], [], [], []]
-squares = [[], [], [], [], [], [], [], [], []]
+    def get_squares(self, rows):
+        for i in range(0, 8):
+            for j in range(0, 3):
+                for k in range(0, 3):
+                    self.squares[i].append(self.rows[j][k])
 
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
           6, 8, 0, 0, 7, 0, 0, 9, 0,
@@ -43,3 +51,5 @@ Answer to example sudoku:
  2, 4, 8, 9, 5, 7, 1, 3, 6,
  7, 6, 3, 4, 1, 8, 2, 5, 9]
 """
+
+sudoku = Sudoku(values)
