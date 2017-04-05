@@ -10,22 +10,22 @@ class Sudoku(object):
     def __init__(self, values):
         self.values = values
 
-    def get_sudoku(self):
-        self.get_rows()
-        self.get_columns()
-        self.get_squares()
+    def parse_sudoku(self):
+        self.parse_rows()
+        self.parse_columns()
+        self.parse_squares()
 
-    def get_rows(self):
+    def parse_rows(self):
         for i in range(9):
             for j in self.values[i * 9:i * 9 + 9]:
                 self.rows[i].append(j)
 
-    def get_columns(self):
+    def parse_columns(self):
         for row in self.rows:
             for i in range(9):
                 self.columns[i].append(row[i])
 
-    def get_squares(self):
+    def parse_squares(self):
         for i in range(9):
             for j in range(0, 3):
                 for k in range(0, 3):
