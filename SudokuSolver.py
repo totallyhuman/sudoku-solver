@@ -18,17 +18,17 @@ class Sudoku(object):
         self.get_squares()
 
     def get_rows(self):
-        for i in range(0, 8):
+        for i in range(9):
             for j in self.values[i * 9:i * 9 + 9]:
                 self.rows[i].append(j)
 
     def get_columns(self):
         for row in self.rows:
-            for i in range(0, 8):
+            for i in range(9):
                 self.columns[i].append(row[i])
 
     def get_squares(self):
-        for i in range(0, 8):
+        for i in range(9):
             for j in range(0, 3):
                 for k in range(0, 3):
                     self.squares[i].append(self.rows[j][k])
@@ -57,4 +57,3 @@ Answer to example sudoku:
 """
 
 sudoku = Sudoku(values)
-sudoku.get_sudoku()
