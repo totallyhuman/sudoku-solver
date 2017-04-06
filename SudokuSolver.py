@@ -66,7 +66,9 @@ class Sudoku(object):
                 j += 1
 
     def calculate_possibilities(self):
-        pass
+        for i in grid:
+            if grid[i] == 0:
+                pass
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
