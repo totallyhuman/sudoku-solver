@@ -66,26 +66,30 @@ class Sudoku(object):
                 j += 1
 
     def locate_cell(self, cell):
-        if cell.startswith('A'):
-            pass
-        elif cell.startswith('B'):
-            pass
-        elif cell.startswith('C'):
-            pass
-        elif cell.startswith('D'):
-            pass
-        elif cell.startswith('E'):
-            pass
-        elif cell.startswith('F'):
-            pass
-        elif cell.startswith('G'):
-            pass
-        elif cell.startswith('H'):
-            pass
-        elif cell.startswith('I'):
-            pass
-        else:
-            pass
+        location = []
+        if cell.startswith('A'): location.append(self.rows[0])
+        elif cell.startswith('B'): location.append(self.rows[1])
+        elif cell.startswith('C'): location.append(self.rows[2])
+        elif cell.startswith('D'): location.append(self.rows[3])
+        elif cell.startswith('E'): location.append(self.rows[4])
+        elif cell.startswith('F'): location.append(self.rows[5])
+        elif cell.startswith('G'): location.append(self.rows[6])
+        elif cell.startswith('H'): location.append(self.rows[7])
+        elif cell.startswith('I'): location.append(self.rows[8])
+        else: pass
+
+        if cell.endswith('1'): location.append(self.columns[0])
+        elif cell.endswith('2'): location.append(self.columns[1])
+        elif cell.endswith('3'): location.append(self.columns[2])
+        elif cell.endswith('4'): location.append(self.columns[3])
+        elif cell.endswith('5'): location.append(self.columns[4])
+        elif cell.endswith('6'): location.append(self.columns[5])
+        elif cell.endswith('7'): location.append(self.columns[6])
+        elif cell.endswith('8'): location.append(self.columns[7])
+        elif cell.endswith('9'): location.append(self.columns[8])
+        else: pass
+
+        return location
 
     def calculate_possibilities(self):
         for i in grid:
