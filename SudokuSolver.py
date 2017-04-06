@@ -14,11 +14,11 @@ class Sudoku(object):
 
     Instance variables:
     values   -- an array containing all 81 values of a puzzle horizontally
-    rows     -- a multi-dimensional array that stores 9 rows as arrays, each
+    rows     -- a two-dimensional array that stores 9 rows as arrays, each
                 holding 9 values
-    columns  -- a multi-dimensional array that stores 9 columns as arrays, each
+    columns  -- a two-dimensional array that stores 9 columns as arrays, each
                 holding 9 values
-    squares  -- a multi-dimensional array that stores 9 3x3 squares as arrays,
+    squares  -- a two-dimensional array that stores 9 3x3 squares as arrays,
                 each holding 9 values
     """
     values = []
