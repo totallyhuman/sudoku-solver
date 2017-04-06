@@ -65,10 +65,33 @@ class Sudoku(object):
                 self.grid[l + str(i)] = values[j]
                 j += 1
 
+    def locate_cell(self, cell):
+        if cell.startswith('A'):
+            pass
+        elif cell.startswith('B'):
+            pass
+        elif cell.startswith('C'):
+            pass
+        elif cell.startswith('D'):
+            pass
+        elif cell.startswith('E'):
+            pass
+        elif cell.startswith('F'):
+            pass
+        elif cell.startswith('G'):
+            pass
+        elif cell.startswith('H'):
+            pass
+        elif cell.startswith('I'):
+            pass
+        else:
+            pass
+
     def calculate_possibilities(self):
         for i in grid:
             if grid[i] == 0:
-                pass
+                self.locate_cell(i)
+
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
