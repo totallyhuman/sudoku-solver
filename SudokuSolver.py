@@ -105,7 +105,7 @@ class Sudoku(object):
         did_something = False
 
         for key, value in self.grid.items():
-            if value == 0:
+            if value == 0 or type(value) is list:
                 self.grid[key] = []
                 location = self.locate_cell(key)
 
