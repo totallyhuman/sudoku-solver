@@ -52,10 +52,7 @@ class Sudoku(object):
 
     def parse_squares(self):
         """Parses the rows into the squares array."""
-        for i in range(9):
-            for j in range(0, 3):
-                for k in range(0, 3):
-                    self.squares[i].append(self.rows[j][k])
+        pass
 
     def parse_grid(self):
         """Parses the values into the grid dict."""
@@ -67,27 +64,8 @@ class Sudoku(object):
 
     def locate_cell(self, cell):
         location = []
-        if cell.startswith('A'): location.append(self.rows[0])
-        elif cell.startswith('B'): location.append(self.rows[1])
-        elif cell.startswith('C'): location.append(self.rows[2])
-        elif cell.startswith('D'): location.append(self.rows[3])
-        elif cell.startswith('E'): location.append(self.rows[4])
-        elif cell.startswith('F'): location.append(self.rows[5])
-        elif cell.startswith('G'): location.append(self.rows[6])
-        elif cell.startswith('H'): location.append(self.rows[7])
-        elif cell.startswith('I'): location.append(self.rows[8])
-        else: pass
-
-        if cell.endswith('1'): location.append(self.columns[0])
-        elif cell.endswith('2'): location.append(self.columns[1])
-        elif cell.endswith('3'): location.append(self.columns[2])
-        elif cell.endswith('4'): location.append(self.columns[3])
-        elif cell.endswith('5'): location.append(self.columns[4])
-        elif cell.endswith('6'): location.append(self.columns[5])
-        elif cell.endswith('7'): location.append(self.columns[6])
-        elif cell.endswith('8'): location.append(self.columns[7])
-        elif cell.endswith('9'): location.append(self.columns[8])
-        else: pass
+        location.append(self.rows[ord(cell[0]) - 65])
+        location.append(self.columns[cell[1] - 1])
 
         return location
 
@@ -95,7 +73,6 @@ class Sudoku(object):
         for i in grid:
             if grid[i] == 0:
                 self.locate_cell(i)
-
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
