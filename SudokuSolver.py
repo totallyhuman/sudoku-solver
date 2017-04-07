@@ -103,6 +103,7 @@ class Sudoku(object):
     def calculate_possibilities(self):
         """For each empty cell, find numbers that are not in its units."""
         did_something = False
+        print("Calculating possibilities...")
 
         for key, value in self.grid.items():
             if value == 0 or type(value) is list:
@@ -131,19 +132,18 @@ class Sudoku(object):
         for i, j in enumerate(v):
             if j == 0:
                 v[i] = ' '
-        print("%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "--------+---------+--------\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "--------+---------+--------\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
-              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n" % tuple(v))
+        print(' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' --------+---------+--------\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' --------+---------+--------\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n' % tuple(v))
 
-# An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
           6, 8, 0, 0, 7, 0, 0, 9, 0,
           1, 9, 0, 0, 0, 4, 5, 0, 0,
@@ -154,25 +154,14 @@ values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
           0, 4, 0, 0, 5, 0, 0, 3, 6,
           7, 0, 3, 0, 1, 8, 0, 0, 0]
 
-# Answer to example sudoku:
-# 4  3  5 | 2  6  9 | 7  8  1
-# 6  8  2 | 5  7  1 | 4  9  3
-# 1  9  7 | 8  3  4 | 5  6  2
-# --------+---------+--------
-# 8  2  6 | 1  9  5 | 3  4  7
-# 3  7  4 | 6  8  2 | 9  1  5
-# 9  5  1 | 7  4  3 | 6  2  8
-# --------+---------+--------
-# 5  1  9 | 3  2  6 | 8  7  4
-# 2  4  8 | 9  5  7 | 1  3  6
-# 7  6  3 | 4  1  8 | 2  5  9
-
 def main():
+    print('Sudoku Solver\n=============\n')
     sudoku = Sudoku(values)
     sudoku.parse_sudoku(values)
     sudoku.solve()
+    print('\n')
     sudoku.format(values)
-    print("->\n")
+    print(" ->\n")
     sudoku.format(sudoku.values)
 
 if __name__ == '__main__':
