@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import better_exceptions
 from collections import OrderedDict
 
 class Sudoku(object):
@@ -31,19 +32,25 @@ class Sudoku(object):
         """See class docstring for details."""
         self.values = values
 
-    def parse_sudoku(self, v):
+    def parse_sudoku(self, v, grid = True):
         """Calls the parse methods for converting the values into arrays."""
         v = list(v)
+
+        self.rows = [[], [], [], [], [], [], [], [], []]
+        self.columns = [[], [], [], [], [], [], [], [], []]
+        self.squares = []
+
         self.parse_rows(v)
         self.parse_columns()
         self.parse_squares()
-        self.parse_grid(v)
+        if grid: self.parse_grid(v)
 
     def parse_rows(self, v):
         """Parses the values into the rows array."""
         for i in range(9):
             for j in v[i * 9:i * 9 + 9]:
-                self.rows[i].append(j)
+                if type(j) is int: self.rows[i].append(j)
+                else: self.rows[i].append(0)
 
     def parse_columns(self):
         """Parses the rows into the columns array."""
@@ -114,7 +121,7 @@ class Sudoku(object):
     def solve(self):
         while True:
             did_something = self.calculate_possibilities()
-            self.parse_sudoku(self.grid.values())
+            self.parse_sudoku(self.grid.values(), grid = False)
             if not did_something: break
 
 # An example sudoku stored as an 81 value array
@@ -143,3 +150,6 @@ values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
 
 # Creates a new instance of the Sudoku class passing the values array
 sudoku = Sudoku(values)
+sudoku.parse_sudoku(values)
+sudoku.solve()
+print(sudoku.grid)
