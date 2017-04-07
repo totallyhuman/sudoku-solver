@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import better_exceptions
 from collections import OrderedDict
 
 class Sudoku(object):
@@ -128,6 +127,7 @@ class Sudoku(object):
 
     @staticmethod
     def format(v):
+        """Format a sudoku puzzle and print it out."""
         for i, j in enumerate(v):
             if j == 0:
                 v[i] = ' '
