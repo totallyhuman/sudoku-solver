@@ -69,9 +69,26 @@ class Sudoku(object):
                 j += 1
 
     def locate_cell(self, cell):
+        """Given a cell index, returns the row, column and square it is in."""
         location = []
-        location.append(self.rows[ord(cell[0]) - 65])
-        location.append(self.columns[cell[1] - 1])
+        x = int(cell[1]) - 1
+        y = ord(cell[0]) - 65
+
+        location.append(self.rows[y])
+        location.append(self.columns[x])
+
+        if y in range(3):
+            if x in range(3): location.append(self.squares[0])
+            elif x in range(3, 6): location.append(self.squares[1])
+            elif x in range(6, 9): location.append(self.squares[2])
+        elif y in range(3, 6):
+            if x in range(3): location.append(self.squares[3])
+            elif x in range(3, 6): location.append(self.squares[4])
+            elif x in range(6, 9): location.append(self.squares[5])
+        elif y in range(6, 9):
+            if x in range(3): location.append(self.squares[6])
+            elif x in range(3, 6): location.append(self.squares[7])
+            elif x in range(6, 9): location.append(self.squares[8])
 
         return location
 
