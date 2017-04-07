@@ -93,7 +93,7 @@ class Sudoku(object):
         return location
 
     def calculate_possibilities(self):
-        """For each empty cell, find numbers that are not in the its units."""
+        """For each empty cell, find numbers that are not in its units."""
         for key, value in self.grid.items():
             if value == 0:
                 self.grid[key] = []
