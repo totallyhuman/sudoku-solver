@@ -69,7 +69,7 @@ class Sudoku(object):
                 j += 1
 
     def locate_cell(self, cell):
-        """Given a cell index, returns the row, column and square it is in."""
+        """Given a cell index, returns the units the cell is in."""
         location = []
         x = int(cell[1]) - 1
         y = ord(cell[0]) - 65
@@ -93,9 +93,15 @@ class Sudoku(object):
         return location
 
     def calculate_possibilities(self):
-        for i in grid:
-            if grid[i] == 0:
-                self.locate_cell(i)
+        """For each empty cell, find numbers that are not in the its units."""
+        for key, value in self.grid.items():
+            if value == 0:
+                self.grid[key] = []
+                location = self.locate_cell(key)
+                for i in range(1, 10):
+                    if i not in location[0] and i not in location[1] and i \
+                                                            not in location[2]:
+                        self.grid[key].append(i)
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
