@@ -102,6 +102,8 @@ class Sudoku(object):
                     if i not in location[0] and i not in location[1] and i \
                                                             not in location[2]:
                         self.grid[key].append(i)
+                        did_something = True
+                if len(self.grid[key]) == 1: self.grid[key] = self.grid[key][9]
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
