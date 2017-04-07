@@ -24,7 +24,7 @@ class Sudoku(object):
     values = []
     rows = [[], [], [], [], [], [], [], [], []]
     columns = [[], [], [], [], [], [], [], [], []]
-    squares = [[], [], [], [], [], [], [], [], []]
+    squares = []
     grid = OrderedDict()
 
     def __init__(self, values):
@@ -52,7 +52,13 @@ class Sudoku(object):
 
     def parse_squares(self):
         """Parses the rows into the squares array."""
-        pass
+        for square_x in range(0, 7)[::3]:
+            for square_y in range(0, 7)[::3]:
+                square = []
+                for x in range(3):
+                    for y in range(3):
+                        square.append(self.rows[square_x + x][square_y + y])
+                self.squares.append(square)
 
     def parse_grid(self):
         """Parses the values into the grid dict."""
