@@ -31,17 +31,18 @@ class Sudoku(object):
         """See class docstring for details."""
         self.values = values
 
-    def parse_sudoku(self):
+    def parse_sudoku(self, v):
         """Calls the parse methods for converting the values into arrays."""
-        self.parse_rows()
+        v = list(v)
+        self.parse_rows(v)
         self.parse_columns()
         self.parse_squares()
-        self.parse_grid()
+        self.parse_grid(v)
 
-    def parse_rows(self):
+    def parse_rows(self, v):
         """Parses the values into the rows array."""
         for i in range(9):
-            for j in self.values[i * 9:i * 9 + 9]:
+            for j in v[i * 9:i * 9 + 9]:
                 self.rows[i].append(j)
 
     def parse_columns(self):
@@ -60,12 +61,12 @@ class Sudoku(object):
                         square.append(self.rows[square_x + x][square_y + y])
                 self.squares.append(square)
 
-    def parse_grid(self):
+    def parse_grid(self, v):
         """Parses the values into the grid dict."""
         j = 0
         for l in 'ABCDEFGHI':
             for i in range(1, 10):
-                self.grid[l + str(i)] = values[j]
+                self.grid[l + str(i)] = v[j]
                 j += 1
 
     def locate_cell(self, cell):
@@ -94,16 +95,27 @@ class Sudoku(object):
 
     def calculate_possibilities(self):
         """For each empty cell, find numbers that are not in its units."""
+        did_something = False
+
         for key, value in self.grid.items():
             if value == 0:
                 self.grid[key] = []
                 location = self.locate_cell(key)
+
                 for i in range(1, 10):
                     if i not in location[0] and i not in location[1] and i \
                                                             not in location[2]:
                         self.grid[key].append(i)
                         did_something = True
-                if len(self.grid[key]) == 1: self.grid[key] = self.grid[key][9]
+                if len(self.grid[key]) == 1: self.grid[key] = self.grid[key][0]
+
+        return did_something
+
+    def solve(self):
+        while True:
+            did_something = self.calculate_possibilities()
+            self.parse_sudoku(self.grid.values())
+            if not did_something: break
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
