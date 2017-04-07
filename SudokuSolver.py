@@ -36,6 +36,7 @@ class Sudoku(object):
         """Calls the parse methods for converting the values into arrays."""
         v = list(v)
 
+        self.values = v
         self.rows = [[], [], [], [], [], [], [], [], []]
         self.columns = [[], [], [], [], [], [], [], [], []]
         self.squares = []
@@ -110,8 +111,8 @@ class Sudoku(object):
                 location = self.locate_cell(key)
 
                 for i in range(1, 10):
-                    if i not in location[0] and i not in location[1] and i \
-                                                            not in location[2]:
+                    if (i not in location[0] and i not in location[1] and i
+                                                           not in location[2]):
                         self.grid[key].append(i)
                         did_something = True
                 if len(self.grid[key]) == 1: self.grid[key] = self.grid[key][0]
@@ -119,10 +120,28 @@ class Sudoku(object):
         return did_something
 
     def solve(self):
+        """Calculates all possibilities and continuously narrows them down."""
         while True:
             did_something = self.calculate_possibilities()
             self.parse_sudoku(self.grid.values(), grid = False)
             if not did_something: break
+
+    @staticmethod
+    def format(v):
+        for i, j in enumerate(v):
+            if j == 0:
+                v[i] = ' '
+        print("%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "--------+---------+--------\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "--------+---------+--------\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n"
+              "%s  %s  %s | %s  %s  %s | %s  %s  %s\n" % tuple(v))
 
 # An example sudoku stored as an 81 value array
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
@@ -148,8 +167,13 @@ values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
 # 2  4  8 | 9  5  7 | 1  3  6
 # 7  6  3 | 4  1  8 | 2  5  9
 
-# Creates a new instance of the Sudoku class passing the values array
-sudoku = Sudoku(values)
-sudoku.parse_sudoku(values)
-sudoku.solve()
-print(sudoku.grid)
+def main():
+    sudoku = Sudoku(values)
+    sudoku.parse_sudoku(values)
+    sudoku.solve()
+    sudoku.format(values)
+    print("->\n")
+    sudoku.format(sudoku.values)
+
+if __name__ == '__main__':
+    main()
