@@ -149,8 +149,8 @@ class Sudoku(object):
         For each empty cell, find numbers that are not in its units.
 
         Returns:
-        did_something  -- a boolean which stores if the function performed any
-                          function on a cell
+        did_something  -- a boolean which stores if the function made any
+                          changes to a cell
         """
         did_something = False
         print("Calculating possibilities...")
