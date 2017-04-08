@@ -188,24 +188,27 @@ class Sudoku(object):
         Format a sudoku puzzle.
 
         Arguments:
-        v  -- a list containing the 81 values of a puzzle horizontally
+        v       -- a list containing the 81 values of a puzzle horizontally
 
-        Returns a string that is a visually formatted version of the values.
+        Returns:
+        result  -- a string that is a visually formatted version of the values.
         """
         for i, j in enumerate(v):
             if j == 0:
                 v[i] = ' '
-        return (' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' --------+---------+--------\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' --------+---------+--------\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
-                ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'.format(*v))
+        result = ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' --------+---------+--------\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' --------+---------+--------\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'
+                 ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n'.format(*v))
+
+        return result
 
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
           6, 8, 0, 0, 7, 0, 0, 9, 0,
