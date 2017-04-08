@@ -5,21 +5,23 @@ from collections import OrderedDict
 
 class Sudoku(object):
     """
-    Sudoku(values) -> new instance
+    Sudoku(values)
 
     A class for a Sudoku puzzle.
 
-    Keyword arguments:
-    values   -- an array containing all 81 values of a puzzle horizontally
+    Arguments:
+    values   -- an list containing the 81 values of a puzzle horizontally
 
     Instance variables:
-    values   -- an array containing all 81 values of a puzzle horizontally
-    rows     -- a two-dimensional array that stores 9 rows as arrays, each
+    values   -- an list containing the 81 values of a puzzle horizontally
+    rows     -- a two-dimensional list that stores 9 rows as lists, each
                 holding 9 values
-    columns  -- a two-dimensional array that stores 9 columns as arrays, each
+    columns  -- a two-dimensional list that stores 9 columns as lists, each
                 holding 9 values
-    squares  -- a two-dimensional array that stores 9 3x3 squares as arrays,
+    squares  -- a two-dimensional list that stores 9 3x3 squares as lists,
                 each holding 9 values
+
+    Returns an instance of the Sudoku class.
     """
     values = []
     rows = [[], [], [], [], [], [], [], [], []]
@@ -32,7 +34,15 @@ class Sudoku(object):
         self.values = values
 
     def parse_sudoku(self, v, grid = True):
-        """Calls the parse methods for converting the values into arrays."""
+        """
+        parse_sudoku(v, grid)
+
+        Calls the parse methods for converting the values into lists.
+
+        Arguments:
+        v     -- a list containing the 81 values of a puzzle horizontally
+        grid  -- a boolean which determines if parse_grid() is run
+        """
         v = list(v)
 
         self.values = v
@@ -46,20 +56,35 @@ class Sudoku(object):
         if grid: self.parse_grid(v)
 
     def parse_rows(self, v):
-        """Parses the values into the rows array."""
+        """
+        parse_rows(v)
+
+        Parses the values into the rows list.
+
+        Arguments:
+        v  -- a list containing the 81 values of a puzzle horizontally
+        """
         for i in range(9):
             for j in v[i * 9:i * 9 + 9]:
                 if type(j) is int: self.rows[i].append(j)
                 else: self.rows[i].append(0)
 
     def parse_columns(self):
-        """Parses the rows into the columns array."""
+        """
+        parse_columns()
+
+        Parses the rows into the columns list.
+        """
         for row in self.rows:
             for i in range(9):
                 self.columns[i].append(row[i])
 
     def parse_squares(self):
-        """Parses the rows into the squares array."""
+        """
+        parse_squares()
+
+        Parses the rows into the squares list.
+        """
         for square_x in range(0, 7)[::3]:
             for square_y in range(0, 7)[::3]:
                 square = []
@@ -69,7 +94,14 @@ class Sudoku(object):
                 self.squares.append(square)
 
     def parse_grid(self, v):
-        """Parses the values into the grid dict."""
+        """
+        parse_grid(v)
+
+        Parses the values into the grid dict.
+
+        Arguments:
+        v  -- a list containing the 81 values of a puzzle horizontally
+        """
         j = 0
         for l in 'ABCDEFGHI':
             for i in range(1, 10):
@@ -77,7 +109,17 @@ class Sudoku(object):
                 j += 1
 
     def locate_cell(self, cell):
-        """Given a cell index, returns the units the cell is in."""
+        """
+        locate_cell(cell)
+
+        Given a cell index, returns the units the cell is in.
+
+        Arguments:
+        cell      -- a string containing the index of a puzzle cell
+
+        Returns:
+        location  -- a list containing the units the given cell is in
+        """
         location = []
         x = int(cell[1]) - 1
         y = ord(cell[0]) - 65
@@ -101,7 +143,15 @@ class Sudoku(object):
         return location
 
     def calculate_possibilities(self):
-        """For each empty cell, find numbers that are not in its units."""
+        """
+        calculate_possibilities()
+
+        For each empty cell, find numbers that are not in its units.
+
+        Returns:
+        did_something  -- a boolean which stores if the function performed any
+                          function on a cell
+        """
         did_something = False
         print("Calculating possibilities...")
 
@@ -120,7 +170,11 @@ class Sudoku(object):
         return did_something
 
     def solve(self):
-        """Calculates all possibilities and continuously narrows them down."""
+        """
+        solve()
+
+        Calculates all possibilities and continuously narrows them down.
+        """
         while True:
             did_something = self.calculate_possibilities()
             self.parse_sudoku(self.grid.values(), grid = False)
@@ -128,21 +182,30 @@ class Sudoku(object):
 
     @staticmethod
     def format(v):
-        """Format a sudoku puzzle and print it out."""
+        """
+        format()
+
+        Format a sudoku puzzle.
+
+        Arguments:
+        v  -- a list containing the 81 values of a puzzle horizontally
+
+        Returns a string that is a visually formatted version of the values.
+        """
         for i, j in enumerate(v):
             if j == 0:
                 v[i] = ' '
-        print(' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' --------+---------+--------\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' --------+---------+--------\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
-              ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n' % tuple(v))
+        return (' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' --------+---------+--------\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' --------+---------+--------\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n'
+                ' %s  %s  %s | %s  %s  %s | %s  %s  %s\n' % tuple(v))
 
 values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
           6, 8, 0, 0, 7, 0, 0, 9, 0,
@@ -155,14 +218,19 @@ values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
           7, 0, 3, 0, 1, 8, 0, 0, 0]
 
 def main():
+    """
+    main()
+
+    Main function that creates a Sudoku object and prints the solution out.
+    """
     print('Sudoku Solver\n=============\n')
     sudoku = Sudoku(values)
     sudoku.parse_sudoku(values)
     sudoku.solve()
     print('\n')
-    sudoku.format(values)
+    print(sudoku.format(values))
     print(" ->\n")
-    sudoku.format(sudoku.values)
+    print(sudoku.format(sudoku.values))
 
 if __name__ == '__main__':
     main()
