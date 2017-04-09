@@ -164,8 +164,9 @@ class Sudoku(object):
                     if (i not in location[0] and i not in location[1] and i
                                                            not in location[2]):
                         self.grid[key].append(i)
-                        did_something = True
-                if len(self.grid[key]) == 1: self.grid[key] = self.grid[key][0]
+                if len(self.grid[key]) == 1:
+                    self.grid[key] = self.grid[key][0]
+                    did_something = True
 
         return did_something
 
