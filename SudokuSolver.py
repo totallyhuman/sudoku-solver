@@ -3,6 +3,10 @@
 
 from collections import OrderedDict
 
+from colorama import init
+init(autoreset = True)
+from colorama import Fore, Back, Style
+
 class Sudoku(object):
     """
     Sudoku(values)
@@ -238,7 +242,7 @@ def main():
 
     Main function that creates a Sudoku object and prints the solution out.
     """
-    print('\nSudoku Solver\n=============\n')
+    print(Fore.BLUE + '\nSudoku Solver\n=============\n')
     sudoku = Sudoku(easy_values)
     sudoku.parse_sudoku(easy_values)
     sudoku.solve()
