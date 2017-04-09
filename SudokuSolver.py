@@ -195,7 +195,7 @@ class Sudoku(object):
         result  -- a string that is a visually formatted version of the values.
         """
         for i, j in enumerate(v):
-            if j == 0:
+            if j == 0 or type(j) == list:
                 v[i] = ' '
         result = (' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
@@ -212,15 +212,25 @@ class Sudoku(object):
 
         return result
 
-values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
-          6, 8, 0, 0, 7, 0, 0, 9, 0,
-          1, 9, 0, 0, 0, 4, 5, 0, 0,
-          8, 2, 0, 1, 0, 0, 0, 4, 0,
-          0, 0, 4, 6, 0, 2, 9, 0, 0,
-          0, 5, 0, 0, 0, 3, 0, 2, 8,
-          0, 0, 9, 3, 0, 0, 0, 7, 4,
-          0, 4, 0, 0, 5, 0, 0, 3, 6,
-          7, 0, 3, 0, 1, 8, 0, 0, 0]
+easy_values = [0, 0, 0, 2, 6, 0, 7, 0, 1,
+               6, 8, 0, 0, 7, 0, 0, 9, 0,
+               1, 9, 0, 0, 0, 4, 5, 0, 0,
+               8, 2, 0, 1, 0, 0, 0, 4, 0,
+               0, 0, 4, 6, 0, 2, 9, 0, 0,
+               0, 5, 0, 0, 0, 3, 0, 2, 8,
+               0, 0, 9, 3, 0, 0, 0, 7, 4,
+               0, 4, 0, 0, 5, 0, 0, 3, 6,
+               7, 0, 3, 0, 1, 8, 0, 0, 0]
+
+hard_values = [0, 0, 0, 2, 0, 0, 0, 6, 3,
+               3, 0, 0, 0, 0, 5, 4, 0, 1,
+               0, 0, 1, 0, 0, 3, 9, 8, 0,
+               0, 0, 0, 0, 0, 0, 0, 9, 0,
+               0, 0, 0, 5, 3, 8, 0, 0, 0,
+               0, 3, 0, 0, 0, 0, 0, 0, 0,
+               0, 2, 6, 3, 0, 0, 5, 0, 0,
+               5, 0, 3, 7, 0, 0, 0, 0, 8,
+               4, 7, 0, 0, 0, 1, 0, 0, 0]
 
 def main():
     """
@@ -229,11 +239,11 @@ def main():
     Main function that creates a Sudoku object and prints the solution out.
     """
     print('Sudoku Solver\n=============\n')
-    sudoku = Sudoku(values)
-    sudoku.parse_sudoku(values)
+    sudoku = Sudoku(easy_values)
+    sudoku.parse_sudoku(easy_values)
     sudoku.solve()
     print('\n')
-    print(sudoku.format(values))
+    print(sudoku.format(easy_values))
     print(" ->\n")
     print(sudoku.format(sudoku.values))
 
