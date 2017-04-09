@@ -3,6 +3,10 @@
 
 from collections import OrderedDict
 
+from colorama import init
+init(autoreset = True)
+from colorama import Fore, Back, Style
+
 class Sudoku(object):
     """
     Sudoku(values)
@@ -197,17 +201,19 @@ class Sudoku(object):
         for key, value in enumerate(v):
             if value == 0 or type(value) == list:
                 v[key] = ' '
-        result = (' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' --------+---------+--------\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' --------+---------+--------\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
-                  ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n')
+                result = Fore.RED + ''
+            else: result = Fore.GREEN + ''
+        result += (' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' --------+---------+--------\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' --------+---------+--------\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
+                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n')
         result = result.format(*v)
 
         return result
@@ -238,7 +244,7 @@ def main():
 
     Main function that creates a Sudoku object and prints the solution out.
     """
-    print('\nSudoku Solver\n=============\n')
+    print(Fore.BLUE + '\nSudoku Solver\n=============\n')
     sudoku = Sudoku(easy_values)
     sudoku.parse_sudoku(easy_values)
     sudoku.solve()
