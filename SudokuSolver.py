@@ -238,7 +238,7 @@ def main():
 
     Main function that creates a Sudoku object and prints the solution out.
     """
-    print('Sudoku Solver\n=============\n')
+    print('\nSudoku Solver\n=============\n')
     sudoku = Sudoku(easy_values)
     sudoku.parse_sudoku(easy_values)
     sudoku.solve()
