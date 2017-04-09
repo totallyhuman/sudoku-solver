@@ -194,9 +194,9 @@ class Sudoku(object):
         Returns:
         result  -- a string that is a visually formatted version of the values.
         """
-        for i, j in enumerate(v):
-            if j == 0 or type(j) == list:
-                v[i] = ' '
+        for key, value in enumerate(v):
+            if value == 0 or type(value) == list:
+                v[key] = ' '
         result = (' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
                   ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
