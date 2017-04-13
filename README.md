@@ -1,4 +1,4 @@
-# sudoku-solver
+# Sudoku Solver
 A solver for Sudoku puzzles written in Python. Not guaranteed to find a
 solution.
 
