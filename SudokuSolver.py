@@ -14,15 +14,15 @@ class Sudoku(object):
     A class for a Sudoku puzzle.
 
     Arguments:
-    values   -- an list containing the 81 values of a puzzle horizontally
+    * values   -- an list containing the 81 values of a puzzle horizontally
 
     Instance variables:
-    values   -- an list containing the 81 values of a puzzle horizontally
-    rows     -- a two-dimensional list that stores 9 rows as lists, each
+    * values   -- an list containing the 81 values of a puzzle horizontally
+    * rows     -- a two-dimensional list that stores 9 rows as lists, each
                 holding 9 values
-    columns  -- a two-dimensional list that stores 9 columns as lists, each
+    * columns  -- a two-dimensional list that stores 9 columns as lists, each
                 holding 9 values
-    squares  -- a two-dimensional list that stores 9 3x3 squares as lists,
+    * squares  -- a two-dimensional list that stores 9 3x3 squares as lists,
                 each holding 9 values
 
     Returns an instance of the Sudoku class.
@@ -44,8 +44,8 @@ class Sudoku(object):
         Calls the parse methods for converting the values into lists.
 
         Arguments:
-        v     -- a list containing the 81 values of a puzzle horizontally
-        grid  -- a boolean which determines if parse_grid() is run
+        * v     -- a list containing the 81 values of a puzzle horizontally
+        * grid  -- a boolean which determines if parse_grid() is run
         """
         v = list(v)
 
@@ -66,7 +66,7 @@ class Sudoku(object):
         Parses the values into the rows list.
 
         Arguments:
-        v  -- a list containing the 81 values of a puzzle horizontally
+        * v  -- a list containing the 81 values of a puzzle horizontally
         """
         for i in range(9):
             for j in v[i * 9:i * 9 + 9]:
@@ -104,7 +104,7 @@ class Sudoku(object):
         Parses the values into the grid dict.
 
         Arguments:
-        v  -- a list containing the 81 values of a puzzle horizontally
+        * v  -- a list containing the 81 values of a puzzle horizontally
         """
         j = 0
         for l in 'ABCDEFGHI':
@@ -119,10 +119,10 @@ class Sudoku(object):
         Given a cell index, returns the units the cell is in.
 
         Arguments:
-        cell      -- a string containing the index of a puzzle cell
+        * cell      -- a string containing the index of a puzzle cell
 
         Returns:
-        location  -- a list containing the units the given cell is in
+        * location  -- a list containing the units the given cell is in
         """
         location = []
         x = int(cell[1]) - 1
@@ -153,7 +153,7 @@ class Sudoku(object):
         For each empty cell, find numbers that are not in its units.
 
         Returns:
-        did_something  -- a boolean which stores if the function made any
+        * did_something  -- a boolean which stores if the function made any
                           changes to a cell
         """
         did_something = False
@@ -188,15 +188,16 @@ class Sudoku(object):
     @staticmethod
     def format(v):
         """
-        format()
+        format(v)
 
         Format a sudoku puzzle.
 
         Arguments:
-        v       -- a list containing the 81 values of a puzzle horizontally
+        * v       -- a list containing the 81 values of a puzzle horizontally
 
         Returns:
-        result  -- a string that is a visually formatted version of the values.
+        * result  -- a string that is a visually formatted version of the
+                     values.
         """
         for key, value in enumerate(v):
             if value == 0 or type(value) == list:
