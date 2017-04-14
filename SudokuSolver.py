@@ -45,7 +45,8 @@ class Sudoku(object):
 
         Arguments:
         * v     -- a list containing the 81 values of a puzzle horizontally
-        * grid  -- a boolean which determines if parse_grid() is run
+        * grid  -- a boolean which determines if parse_grid() is run (defaults
+                   to True)
         """
         v = list(v)
 
