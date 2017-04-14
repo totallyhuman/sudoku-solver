@@ -14,10 +14,10 @@ class Sudoku(object):
     A class for a Sudoku puzzle.
 
     Arguments:
-    * values   -- an list containing the 81 values of a puzzle horizontally
+    * values   -- a list containing the 81 values of a puzzle horizontally
 
     Instance variables:
-    * values   -- an list containing the 81 values of a puzzle horizontally
+    * values   -- a list containing the 81 values of a puzzle horizontally
     * rows     -- a two-dimensional list that stores 9 rows as lists, each
                 holding 9 values
     * columns  -- a two-dimensional list that stores 9 columns as lists, each
