@@ -17,12 +17,12 @@ Instance variables:
 Returns an instance of the Sudoku class.
 
 ## Functions
-### \_\_init\_\_
+### Sudoku.\_\_init\_\_
 `__init__(values)`:
 
 See class docstring for details.
 
-### parse\_sudoku
+### Sudoku.parse\_sudoku
 `parse_sudoku(v, grid)`:
 
 Calls the parse methods for converting the values into lists.
@@ -31,7 +31,7 @@ Arguments:
 * v -- a list containing the 81 values of a puzzle horizontally
 * grid -- a boolean which determines if parse_grid() is run (defaults to True)
 
-### parse\_rows
+### Sudoku.parse\_rows
 `parse_rows(v)`:
 
 Parses the values into the rows list.
@@ -39,17 +39,17 @@ Parses the values into the rows list.
 Arguments:
 * v -- a list containing the 81 values of a puzzle horizontally
 
-### parse\_columns
+### Sudoku.parse\_columns
 `parse_columns()`:
 
 Parses the rows into the columns list.
 
-### parse\_squares
+### Sudoku.parse\_squares
 `parse_squares()`:
 
 Parses the rows into the squares list.
 
-### parse\_grid
+### Sudoku.parse\_grid
 `parse_grid(v)`:
 
 Parses the values into the grid dict.
@@ -57,7 +57,7 @@ Parses the values into the grid dict.
 Arguments:
 * v -- a list containing the 81 values of a puzzle horizontally
 
-### locate\_cell
+### Sudoku.locate\_cell
 `locate_cell(cell)`:
 
 Given a cell index, returns the units the cell is in.
@@ -68,7 +68,7 @@ Arguments:
 Returns:
 * location -- a list containing the units the given cell is in
 
-### calculate\_possibilities
+### Sudoku.calculate\_possibilities
 `calculate_possibilities()`:
 
 For each empty cell, find numbers that are not in its units.
@@ -76,12 +76,12 @@ For each empty cell, find numbers that are not in its units.
 Returns:
 * did_something -- a boolean which stores if the function made any changes to a cell
 
-### solve
+### Sudoku.solve
 `solve()`:
 
 Calculates all possibilities and continuously narrows them down.
 
-### format
+### Sudoku.format
 `format(v)`:
 
 Format a sudoku puzzle.
