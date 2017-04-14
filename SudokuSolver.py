@@ -3,9 +3,8 @@
 
 from collections import OrderedDict
 
-from colorama import init
+from colorama import init, Fore, Back, Style
 init(autoreset = True)
-from colorama import Fore, Back, Style
 
 class Sudoku(object):
     """
@@ -96,6 +95,7 @@ class Sudoku(object):
                 for x in range(3):
                     for y in range(3):
                         square.append(self.rows[square_x + x][square_y + y])
+
                 self.squares.append(square)
 
     def parse_grid(self, v):
@@ -108,6 +108,7 @@ class Sudoku(object):
         * v  -- a list containing the 81 values of a puzzle horizontally
         """
         j = 0
+
         for l in 'ABCDEFGHI':
             for i in range(1, 10):
                 self.grid[l + str(i)] = v[j]
@@ -169,6 +170,7 @@ class Sudoku(object):
                     if (i not in location[0] and i not in location[1] and i
                                                            not in location[2]):
                         self.grid[key].append(i)
+
                 if len(self.grid[key]) == 1:
                     self.grid[key] = self.grid[key][0]
                     did_something = True
@@ -205,6 +207,7 @@ class Sudoku(object):
                 v[key] = ' '
                 result = Fore.RED + ''
             else: result = Fore.GREEN + ''
+
         result += (' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
                    ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
                    ' {}  {}  {} | {}  {}  {} | {}  {}  {}\n' +
@@ -247,9 +250,11 @@ def main():
     Main function that creates a Sudoku object and prints the solution out.
     """
     print(Fore.BLUE + '\nSudoku Solver\n=============\n')
+
     sudoku = Sudoku(easy_values)
     sudoku.parse_sudoku(easy_values)
     sudoku.solve()
+    
     print('\n')
     print(sudoku.format(easy_values))
     print(" ->\n")
