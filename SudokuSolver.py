@@ -18,11 +18,11 @@ class Sudoku(object):
     Instance variables:
     * values   -- a list containing the 81 values of a puzzle horizontally
     * rows     -- a two-dimensional list that stores 9 rows as lists, each
-                holding 9 values
+                  holding 9 values
     * columns  -- a two-dimensional list that stores 9 columns as lists, each
-                holding 9 values
+                  holding 9 values
     * squares  -- a two-dimensional list that stores 9 3x3 squares as lists,
-                each holding 9 values
+                  each holding 9 values
 
     Returns an instance of the Sudoku class.
     """
@@ -156,7 +156,7 @@ class Sudoku(object):
 
         Returns:
         * did_something  -- a boolean which stores if the function made any
-                          changes to a cell
+                            changes to a cell
         """
         did_something = False
         print("Calculating possibilities...")
@@ -254,7 +254,7 @@ def main():
     sudoku = Sudoku(easy_values)
     sudoku.parse_sudoku(easy_values)
     sudoku.solve()
-    
+
     print('\n')
     print(sudoku.format(easy_values))
     print(" ->\n")
